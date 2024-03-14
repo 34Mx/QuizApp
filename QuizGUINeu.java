@@ -22,7 +22,12 @@ public class QuizGUINeu extends JFrame {
   private JNumberField nPunkte = new JNumberField();
   private JLabel lPunkte1 = new JLabel();
   // end attributes
+  int i;
+  int a;
+  String antwort = null;
+  int punkte;
   
+  List<String> quiz;
   public QuizGUINeu() { 
     // Frame init
     super();
@@ -101,7 +106,16 @@ public class QuizGUINeu extends JFrame {
     lPunkte1.setHorizontalAlignment(SwingConstants.CENTER);
     cp.add(lPunkte1);
     // end components
+    quiz = new List<String>();
+    quiz.append("Ja?");
+    quiz.append("Nein");
+    quiz.append("Wie alt ist Jan Balzer?");
+    quiz.append("17");
+    quiz.toFirst();
     
+    tFrage.setText(quiz.getContent());
+    quiz.next();
+    antwort = quiz.getContent();
     setVisible(true);
   } // end of public QuizGUINeu
   
@@ -113,23 +127,70 @@ public class QuizGUINeu extends JFrame {
   
   public void bPrevious_ActionPerformed(ActionEvent evt) {
     // TODO add your code here
-    
+    bPrevious();
   } // end of bPrevious_ActionPerformed
 
   public void bNext_ActionPerformed(ActionEvent evt) {
     // TODO add your code here
-    
+    bNext();
   } // end of bNext_ActionPerformed
 
   public void bCheck_ActionPerformed(ActionEvent evt) {
     // TODO add your code here
-    
+    bCheck();
   } // end of bCheck_ActionPerformed
 
   public void bBar_ActionPerformed(ActionEvent evt) {
-    // TODO add your code here
+    
     
   } // end of bBar_ActionPerformed
-
+  
+  public void bNext(){
+    resetColor();
+    quiz.next();
+    tFrage.setText(quiz.getContent());
+    i++;
+    quiz.next();
+    antwort=quiz.getContent();
+    i++;
+  }
+  
+  public void bPrevious(){
+    resetColor();
+    quiz.toFirst();
+    i=a;
+    a=a-1;
+    while (a!=1) { 
+      quiz.next();
+      i--;
+    } // end of while 
+    tFrage.setText(quiz.getContent());
+    a=0;
+    while (i!=1) { 
+      quiz.next();
+      i--;
+    } // end of while 
+    antwort=quiz.getContent();
+    i=0;
+    
+    
+  }
+  
+  public void bCheck(){
+    if (tAntwort.getText().equalsIgnoreCase(antwort)) {
+      bBar.setBackground(new Color(0x8ac926));
+      punkte=punkte+1;
+     } else {
+      bBar.setBackground(new Color(0xff595e));
+        if (punkte!=0){
+        punkte=punkte-1;
+      }
+    }
+    nPunkte.setInt(punkte);
+  }
+   
+  public void resetColor() {
+    bBar.setBackground(new Color(0xF7F7F7));
+  }
   // end methods
 } // end of class QuizGUINeu
