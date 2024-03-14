@@ -164,15 +164,19 @@ public class QuizGUI extends JFrame {
   public void bPrevious(){
     resetColor();
     quiste.toFirst();
-    while (i-1!=1) { 
+    while (i!=1) { 
       quiste.next();
+      i--;
     } // end of while
     i=0;
-     quantwort.toFirst();
-    while (a-1!=1) { 
+    quantwort.toFirst();
+    while (a!=1) { 
       quantwort.next();
+      a--;
     } // end of while
     a=0;
+    tFrage.setText(quiste.getContent());
+    antwort=quantwort.getContent();
   }
   
   public void bCheck(){
@@ -193,13 +197,10 @@ public class QuizGUI extends JFrame {
       if (!quiste.hasAccess()) return null;
       quiste.next();
     }
-    
     return quiste.getContent();
   }
   
-  public String getElementAntworten(int index) {
-    
-  }
+  
 
   
   
