@@ -21,6 +21,9 @@ public class QuizGUINeu extends JFrame {
   private JButton bBar = new JButton();
   private JNumberField nPunkte = new JNumberField();
   private JLabel lPunkte1 = new JLabel();
+  private JLabel lTipp = new JLabel();
+  private JButton bTipp = new JButton();
+  private JTextField tTipp = new JTextField();
   // end attributes
   int i;
   int a;
@@ -83,7 +86,7 @@ public class QuizGUINeu extends JFrame {
         bCheck_ActionPerformed(evt);
       }
     });
-    bCheck.setBackground(new Color(0x8AC926));
+    bCheck.setBackground(new Color(0x6A4C93));
     bCheck.setForeground(new Color(0xF7F7F7));
     cp.add(bCheck);
     bBar.setBounds(0, 0, 32, 616);
@@ -105,6 +108,26 @@ public class QuizGUINeu extends JFrame {
     lPunkte1.setHorizontalTextPosition(SwingConstants.CENTER);
     lPunkte1.setHorizontalAlignment(SwingConstants.CENTER);
     cp.add(lPunkte1);
+    lTipp.setBounds(704, 520, 112, 32);
+    lTipp.setText("Tipp gefällig? (2P)");
+    lTipp.setVerticalAlignment(SwingConstants.CENTER);
+    lTipp.setVerticalTextPosition(SwingConstants.CENTER);
+    cp.add(lTipp);
+    bTipp.setBounds(744, 552, 40, 40);
+    bTipp.setText("🍀");
+    bTipp.setMargin(new Insets(2, 2, 2, 2));
+    bTipp.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bTipp_ActionPerformed(evt);
+      }
+    });
+    bTipp.setBackground(new Color(0xA7C957));
+    bTipp.setFont(new Font("Moon", Font.BOLD, 20));
+    bTipp.setForeground(new Color(0x386641));
+    cp.add(bTipp);
+    tTipp.setBounds(592, 552, 96, 40);
+    tTipp.setEditable(false);
+    cp.add(tTipp);
     // end components
     quiz = new List<String>();
     quiz.append("Ja?");
@@ -180,18 +203,22 @@ public class QuizGUINeu extends JFrame {
     if (tAntwort.getText().equalsIgnoreCase(antwort)) {
       bBar.setBackground(new Color(0x8ac926));
       punkte=punkte+1;
-      nPunkte.setInt(punkte);
      } else {
       bBar.setBackground(new Color(0xff595e));
         if (punkte!=0){
         punkte=punkte-1;
       }
-      nPunkte.setInt(punkte);
     }
+    nPunkte.setInt(punkte);
   }
    
   public void resetColor() {
     bBar.setBackground(new Color(0xF7F7F7));
   }
+  public void bTipp_ActionPerformed(ActionEvent evt) {
+    // TODO add your code here
+    
+  } // end of bTipp_ActionPerformed
+
   // end methods
 } // end of class QuizGUINeu

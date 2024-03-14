@@ -1,10 +1,10 @@
 object FGUIForm: TFGUIForm
-  Left = 672
-  Top = 192
+  Left = 423
+  Top = 203
   BorderIcons = [biSystemMenu]
   Caption = 'QuizGUINeu'
   ClientHeight = 611
-  ClientWidth = 935
+  ClientWidth = 927
   Color = 16250871
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -174,7 +174,7 @@ object FGUIForm: TFGUIForm
     Font.Name = 'Dialog'
     Font.Style = [fsBold]
     Foreground = 16250871
-    Background = 2541962
+    Background = 9653354
     JavaType = 'JButton'
     Focusable = True
     actionPerformed = 'bCheck_ActionPerformed'
@@ -303,5 +303,100 @@ object FGUIForm: TFGUIForm
     IconTextGap = 4
     DisplayedMnemonic = 0
     DisplayedMnemonicIndex = 0
+  end
+  object lTipp: TJLabel
+    Tag = 1
+    Left = 704
+    Top = 520
+    Width = 112
+    Height = 32
+    Hint = 'jLabel1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
+    Text = 'Tipp gef'#228'llig? (2P)'
+    HorizontalAlignment = LEFT
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    DisplayedMnemonic = 0
+    DisplayedMnemonicIndex = 0
+  end
+  object bTipp: TJButton
+    Tag = 4
+    Left = 744
+    Top = 552
+    Width = 40
+    Height = 40
+    Hint = 'jButton1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Moon'
+    Font.Style = [fsBold]
+    Foreground = 4286008
+    Background = 5753255
+    JavaType = 'JButton'
+    Focusable = True
+    actionPerformed = 'bTipp_ActionPerformed'
+    Opaque = True
+    Text = #55356#57152
+    Mnemonic = 0
+    DisplayedMnemonicIndex = 0
+    Selected = False
+    BorderPainted = True
+    FocusPainted = False
+    ContentAreaFilled = True
+    HorizontalAlignment = CENTER
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    RolloverEnabled = False
+    Border.BorderType = NoBorder
+    Border.LineColor = clBlack
+    Border.LineThickness = 0
+    Border.LineRounded = False
+    Border.EtchHighlightColor = clBlack
+    Border.EtchShadowColor = clBlack
+    Border.Etchtype = 0
+    Border.BevelHighlightColor = clBlack
+    Border.BevelShadowColor = clBlack
+    Border.Beveltype = 0
+    Border.MatteColor = clBlack
+    Border.MatteTop = 0
+    Border.MatteLeft = 0
+    Border.MatteBottom = 0
+    Border.MatteRight = 0
+  end
+  object tTipp: TJTextField
+    Tag = 2
+    Left = 592
+    Top = 552
+    Width = 96
+    Height = 40
+    Cursor = crIBeam
+    Hint = 'jTextField1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    JavaType = 'JTextField'
+    Focusable = True
+    Opaque = True
+    HorizontalAlignment = LEFT
+    Text = ''
+    Editable = False
   end
 end
