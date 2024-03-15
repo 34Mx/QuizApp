@@ -201,7 +201,7 @@ public class QuizGUINeu extends JFrame {
       tTipp.setText(""); 
     }
     else{
-      tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " gebraucht!");
+      tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " Tipps gebraucht!");
     }   
   }
   

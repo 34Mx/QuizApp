@@ -4,7 +4,7 @@ object FGUIForm: TFGUIForm
   BorderIcons = [biSystemMenu]
   Caption = 'QuizGUINeu'
   ClientHeight = 611
-  ClientWidth = 937
+  ClientWidth = 947
   Color = 16250871
   ParentFont = True
   FormStyle = fsStayOnTop
