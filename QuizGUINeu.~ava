@@ -27,8 +27,11 @@ public class QuizGUINeu extends JFrame {
   // end attributes
   int i;
   int a;
+  int b;
   String antwort = null;
   int punkte;
+  int tipps;
+  String tipp;
   
   List<String> quiz;
   public QuizGUINeu() { 
@@ -108,12 +111,12 @@ public class QuizGUINeu extends JFrame {
     lPunkte1.setHorizontalTextPosition(SwingConstants.CENTER);
     lPunkte1.setHorizontalAlignment(SwingConstants.CENTER);
     cp.add(lPunkte1);
-    lTipp.setBounds(704, 520, 112, 32);
+    lTipp.setBounds(184, 312, 112, 40);
     lTipp.setText("Tipp gefällig? (2P)");
     lTipp.setVerticalAlignment(SwingConstants.CENTER);
     lTipp.setVerticalTextPosition(SwingConstants.CENTER);
     cp.add(lTipp);
-    bTipp.setBounds(744, 552, 40, 40);
+    bTipp.setBounds(296, 312, 40, 40);
     bTipp.setText("🍀");
     bTipp.setMargin(new Insets(2, 2, 2, 2));
     bTipp.addActionListener(new ActionListener() { 
@@ -125,20 +128,34 @@ public class QuizGUINeu extends JFrame {
     bTipp.setFont(new Font("Moon", Font.BOLD, 20));
     bTipp.setForeground(new Color(0x386641));
     cp.add(bTipp);
-    tTipp.setBounds(592, 552, 96, 40);
+    tTipp.setBounds(176, 352, 312, 40);
     tTipp.setEditable(false);
     cp.add(tTipp);
     // end components
     quiz = new List<String>();
     quiz.append("Ja?");
     quiz.append("Nein");
+    quiz.append("Gegenteil");
     quiz.append("Wie alt ist Jan Balzer?");
     quiz.append("17");
+    quiz.append("2*9-1");
+    quiz.append("Wie macht die Kuh");
+    quiz.append("Muh");
+    quiz.append("Es reimt sich auf Kuh");
+    quiz.append("Wo liegt der höchste Berg Europas?");
+    quiz.append("Frankreich");
+    quiz.append("Er heißt Mont Blanc");
+    
+    
     quiz.toFirst();
+    
     
     tFrage.setText(quiz.getContent());
     quiz.next();
     antwort = quiz.getContent();
+    quiz.next();
+    tipp=quiz.getContent();
+    
     setVisible(true);
   } // end of public QuizGUINeu
   
@@ -171,31 +188,51 @@ public class QuizGUINeu extends JFrame {
   public void bNext(){
     resetColor();
     quiz.next();
-    tFrage.setText(quiz.getContent());
-    i++;
-    quiz.next();
-    antwort=quiz.getContent();
-    i++;
+    if (quiz.getContent()!=null){
+      
+      tFrage.setText(quiz.getContent());
+      i++;
+      quiz.next();
+      antwort=quiz.getContent();
+      i++;
+      quiz.next();
+      tipp=quiz.getContent();
+      i++;
+      tTipp.setText(""); 
+    }
+    else{
+      tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " gebraucht!");
+    }   
   }
   
   public void bPrevious(){
     resetColor();
     quiz.toFirst();
-    i=a;
-    a=a-1;
+    a=i-1;
+    b=a-1;
+    
+    while (b!=1) { 
+      quiz.next();
+      b--;
+    } // end of while
+    
+    
+    tFrage.setText(quiz.getContent());
+    quiz.toFirst();
     while (a!=1) { 
       quiz.next();
-      i--;
+      a--;
     } // end of while 
-    tFrage.setText(quiz.getContent());
     a=0;
+    antwort=quiz.getContent();
+    quiz.toFirst();
     while (i!=1) { 
       quiz.next();
       i--;
     } // end of while 
-    antwort=quiz.getContent();
+    tipp=quiz.getContent();
     i=0;
-    
+    tTipp.setText("");
     
   }
   
@@ -203,20 +240,32 @@ public class QuizGUINeu extends JFrame {
     if (tAntwort.getText().equalsIgnoreCase(antwort)) {
       bBar.setBackground(new Color(0x8ac926));
       punkte=punkte+1;
-     } else {
+    } else {
       bBar.setBackground(new Color(0xff595e));
-        if (punkte!=0){
+      if (punkte!=0){
         punkte=punkte-1;
       }
     }
     nPunkte.setInt(punkte);
   }
-   
+  
+  public void bTipp(){
+    if(punkte>=2){
+      tTipp.setText(tipp);
+      punkte=punkte-2;
+      nPunkte.setInt(punkte);
+      tipps++;
+    }
+    else{
+      tTipp.setText("Nicht genug Punkte!");
+    }
+  }
+  
   public void resetColor() {
     bBar.setBackground(new Color(0xF7F7F7));
   }
   public void bTipp_ActionPerformed(ActionEvent evt) {
-    // TODO add your code here
+    bTipp();
     
   } // end of bTipp_ActionPerformed
 

@@ -1,10 +1,10 @@
 object FGUIForm: TFGUIForm
-  Left = 423
-  Top = 203
+  Left = 924
+  Top = 206
   BorderIcons = [biSystemMenu]
   Caption = 'QuizGUINeu'
   ClientHeight = 611
-  ClientWidth = 927
+  ClientWidth = 937
   Color = 16250871
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,7 +17,7 @@ object FGUIForm: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = False
+  Modified = True
   Resizable = False
   Undecorated = False
   Background = 16250871
@@ -306,10 +306,10 @@ object FGUIForm: TFGUIForm
   end
   object lTipp: TJLabel
     Tag = 1
-    Left = 704
-    Top = 520
+    Left = 184
+    Top = 312
     Width = 112
-    Height = 32
+    Height = 40
     Hint = 'jLabel1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -332,8 +332,8 @@ object FGUIForm: TFGUIForm
   end
   object bTipp: TJButton
     Tag = 4
-    Left = 744
-    Top = 552
+    Left = 296
+    Top = 312
     Width = 40
     Height = 40
     Hint = 'jButton1'
@@ -379,9 +379,9 @@ object FGUIForm: TFGUIForm
   end
   object tTipp: TJTextField
     Tag = 2
-    Left = 592
-    Top = 552
-    Width = 96
+    Left = 176
+    Top = 352
+    Width = 312
     Height = 40
     Cursor = crIBeam
     Hint = 'jTextField1'
