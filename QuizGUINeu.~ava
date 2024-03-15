@@ -133,9 +133,6 @@ public class QuizGUINeu extends JFrame {
     cp.add(tTipp);
     // end components
     quiz = new List<String>();
-    quiz.append("Ja?");
-    quiz.append("Nein");
-    quiz.append("Gegenteil");
     quiz.append("Wie alt ist Jan Balzer?");
     quiz.append("17");
     quiz.append("2*9-1");
@@ -145,6 +142,16 @@ public class QuizGUINeu extends JFrame {
     quiz.append("Wo liegt der höchste Berg Europas?");
     quiz.append("Frankreich");
     quiz.append("Er heißt Mont Blanc");
+    quiz.append("Wer ist aktuell Fußball Weltmeister?");
+    quiz.append("Argentinien");
+    quiz.append("Messi kommt aus diesem Land");
+    quiz.append("Welcher ist der größte Planet im Sonnensystem");
+    quiz.append("Jupiter");
+    quiz.append("Er fängt mit J an");
+    quiz.append("Welcher Buchstabe kommt im Alphabet nach T");
+    quiz.append("U");
+    quiz.append("Es ist nicht A");
+    
     
     
     quiz.toFirst();
@@ -198,10 +205,13 @@ public class QuizGUINeu extends JFrame {
       quiz.next();
       tipp=quiz.getContent();
       i++;
-      tTipp.setText(""); 
+      tTipp.setText("");
+      tAntwort.setText(""); 
     }
+    
     else{
-      tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " gebraucht!");
+      tAntwort.setText("");
+      tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " Tipps gebraucht!");
     }   
   }
   
@@ -233,7 +243,7 @@ public class QuizGUINeu extends JFrame {
     tipp=quiz.getContent();
     i=0;
     tTipp.setText("");
-    
+    tAntwort.setText("");
   }
   
   public void bCheck(){
