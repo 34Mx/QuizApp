@@ -28,6 +28,7 @@ public class QuizGUINeu extends JFrame {
   int i;
   int a;
   int b;
+  int u;
   String antwort = null;
   int punkte;
   int tipps;
@@ -211,6 +212,7 @@ public class QuizGUINeu extends JFrame {
     
     else{
       tAntwort.setText("");
+      tTipp.setText("Bitte schließ das Quiz nun und starte es für die nächste Person neu :^)");
       tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " Tipps gebraucht!");
     }   
   }
@@ -218,6 +220,7 @@ public class QuizGUINeu extends JFrame {
   public void bPrevious(){
     resetColor();
     quiz.toFirst();
+    u=i;
     a=i-1;
     b=a-1;
     
@@ -225,15 +228,12 @@ public class QuizGUINeu extends JFrame {
       quiz.next();
       b--;
     } // end of while
-    
-    
     tFrage.setText(quiz.getContent());
     quiz.toFirst();
     while (a!=1) { 
       quiz.next();
       a--;
     } // end of while 
-    a=0;
     antwort=quiz.getContent();
     quiz.toFirst();
     while (i!=1) { 
@@ -241,7 +241,7 @@ public class QuizGUINeu extends JFrame {
       i--;
     } // end of while 
     tipp=quiz.getContent();
-    i=0;
+    i=u-3;;
     tTipp.setText("");
     tAntwort.setText("");
   }
@@ -278,6 +278,6 @@ public class QuizGUINeu extends JFrame {
     bTipp();
     
   } // end of bTipp_ActionPerformed
-
+  
   // end methods
 } // end of class QuizGUINeu
