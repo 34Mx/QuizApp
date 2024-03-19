@@ -212,7 +212,7 @@ public class QuizGUINeu extends JFrame {
     
     else{
       tAntwort.setText("");
-      tTipp.setText("Bitte schließ das Quiz nun und starte es für die nächste Person neu :^)");
+      tAntwort.setText("Bitte schließ das Quiz nun und starte es für die nächste Person neu :^)");
       tFrage.setText("Danke fürs Spielen! Du hast " + punkte + " Punkte erreicht und " + tipps + " Tipps gebraucht!");
     }   
   }
