@@ -1,10 +1,10 @@
 object FGUIForm: TFGUIForm
-  Left = 924
-  Top = 206
+  Left = 533
+  Top = 288
   BorderIcons = [biSystemMenu]
   Caption = 'QuizGUINeu'
   ClientHeight = 611
-  ClientWidth = 937
+  ClientWidth = 923
   Color = 16250871
   ParentFont = True
   FormStyle = fsStayOnTop
@@ -17,7 +17,7 @@ object FGUIForm: TFGUIForm
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
-  Modified = True
+  Modified = False
   Resizable = False
   Undecorated = False
   Background = 16250871
@@ -27,7 +27,7 @@ object FGUIForm: TFGUIForm
     Tag = 2
     Left = 240
     Top = 80
-    Width = 432
+    Width = 392
     Height = 40
     Cursor = crIBeam
     Hint = 'jTextField1'
@@ -45,56 +45,9 @@ object FGUIForm: TFGUIForm
     Text = ''
     Editable = False
   end
-  object bPrevious: TJButton
-    Tag = 4
-    Left = 200
-    Top = 80
-    Width = 40
-    Height = 40
-    Hint = 'jButton1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Dialog'
-    Font.Style = [fsBold]
-    Foreground = 16250871
-    Background = 1156092
-    JavaType = 'JButton'
-    Focusable = False
-    actionPerformed = 'bPrevious_ActionPerformed'
-    Opaque = True
-    Text = '<'
-    Mnemonic = 0
-    DisplayedMnemonicIndex = 0
-    Selected = False
-    BorderPainted = True
-    FocusPainted = False
-    ContentAreaFilled = True
-    HorizontalAlignment = CENTER
-    VerticalAlignment = CENTER
-    HorizontalTextPosition = RIGHT
-    VerticalTextPosition = CENTER
-    IconTextGap = 4
-    RolloverEnabled = False
-    Border.BorderType = NoBorder
-    Border.LineColor = clBlack
-    Border.LineThickness = 0
-    Border.LineRounded = False
-    Border.EtchHighlightColor = clBlack
-    Border.EtchShadowColor = clBlack
-    Border.Etchtype = 0
-    Border.BevelHighlightColor = clBlack
-    Border.BevelShadowColor = clBlack
-    Border.Beveltype = 0
-    Border.MatteColor = clBlack
-    Border.MatteTop = 0
-    Border.MatteLeft = 0
-    Border.MatteBottom = 0
-    Border.MatteRight = 0
-  end
   object bNext: TJButton
     Tag = 4
-    Left = 672
+    Left = 632
     Top = 80
     Width = 40
     Height = 40

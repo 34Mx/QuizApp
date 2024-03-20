@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import java.util.Random;
 
 /**
  *
@@ -14,7 +15,6 @@ import javax.swing.event.*;
 public class QuizGUINeu extends JFrame {
   // start attributes
   private JTextField tFrage = new JTextField();
-  private JButton bPrevious = new JButton();
   private JButton bNext = new JButton();
   private JTextField tAntwort = new JTextField();
   private JButton bCheck = new JButton();
@@ -25,16 +25,12 @@ public class QuizGUINeu extends JFrame {
   private JButton bTipp = new JButton();
   private JTextField tTipp = new JTextField();
   // end attributes
-  int i;
-  int a;
-  int b;
-  int u;
-  String antwort = null;
-  int punkte;
-  int tipps;
-  String tipp;
+  int quizIndex = 0;
   
-  List<String> quiz;
+  int punkte = 0;
+  int tipps = 0;
+  
+  List<Frage> quiz;
   public QuizGUINeu() { 
     // Frame init
     super();
@@ -53,22 +49,10 @@ public class QuizGUINeu extends JFrame {
     cp.setBackground(new Color(0xF7F7F7));
     // start components
     
-    tFrage.setBounds(240, 80, 432, 40);
+    tFrage.setBounds(240, 80, 392, 40);
     tFrage.setEditable(false);
     cp.add(tFrage);
-    bPrevious.setBounds(200, 80, 40, 40);
-    bPrevious.setText("<");
-    bPrevious.setMargin(new Insets(2, 2, 2, 2));
-    bPrevious.addActionListener(new ActionListener() { 
-      public void actionPerformed(ActionEvent evt) { 
-        bPrevious_ActionPerformed(evt);
-      }
-    });
-    bPrevious.setBackground(new Color(0xFCA311));
-    bPrevious.setForeground(new Color(0xF7F7F7));
-    bPrevious.setFocusable(false);
-    cp.add(bPrevious);
-    bNext.setBounds(672, 80, 40, 40);
+    bNext.setBounds(632, 80, 40, 40);
     bNext.setText(">");
     bNext.setMargin(new Insets(2, 2, 2, 2));
     bNext.addActionListener(new ActionListener() { 
@@ -118,14 +102,14 @@ public class QuizGUINeu extends JFrame {
     lTipp.setVerticalTextPosition(SwingConstants.CENTER);
     cp.add(lTipp);
     bTipp.setBounds(296, 312, 40, 40);
-    bTipp.setText("🍀");
+    bTipp.setText("***");
     bTipp.setMargin(new Insets(2, 2, 2, 2));
     bTipp.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
         bTipp_ActionPerformed(evt);
       }
     });
-    bTipp.setBackground(new Color(0xA7C957));
+    bTipp.setBackground(new Color(0xA7C957));               
     bTipp.setFont(new Font("Moon", Font.BOLD, 20));
     bTipp.setForeground(new Color(0x386641));
     cp.add(bTipp);
@@ -133,36 +117,18 @@ public class QuizGUINeu extends JFrame {
     tTipp.setEditable(false);
     cp.add(tTipp);
     // end components
-    quiz = new List<String>();
-    quiz.append("Wie alt ist Jan Balzer?");
-    quiz.append("17");
-    quiz.append("2*9-1");
-    quiz.append("Wie macht die Kuh");
-    quiz.append("Muh");
-    quiz.append("Es reimt sich auf Kuh");
-    quiz.append("Wo liegt der höchste Berg Europas?");
-    quiz.append("Frankreich");
-    quiz.append("Er heißt Mont Blanc");
-    quiz.append("Wer ist aktuell Fußball Weltmeister?");
-    quiz.append("Argentinien");
-    quiz.append("Messi kommt aus diesem Land");
-    quiz.append("Welcher ist der größte Planet im Sonnensystem");
-    quiz.append("Jupiter");
-    quiz.append("Er fängt mit J an");
-    quiz.append("Welcher Buchstabe kommt im Alphabet nach T");
-    quiz.append("U");
-    quiz.append("Es ist nicht A");
-    
-    
+    quiz = new List<Frage>();
+    quiz.append(new Frage("Wie alt ist Jan Balzer?", "17", "2 * 9 - 1"));
+    quiz.append(new Frage("Wie macht die Kuh?", "Muh", "Es reimt sich auf Kuh..."));
+    quiz.append(new Frage("Wo liegt der höchste Berg Europas?", "Frankreich", "Er heißt Mont Blanc."));
+    quiz.append(new Frage("Wer ist aktuell Fußball-Weltmeister?", "Argentinien", "Messi kommt aus diesem Land."));
+    quiz.append(new Frage("Welcher ist der größte Planet im Sonnensystem?", "Jupiter", "Er fängt mit J an."));
+    quiz.append(new Frage("Welcher Buchstabe kommt im Alphabet nach T?", "U", "Es ist nicht A."));
     
     quiz.toFirst();
     
     
-    tFrage.setText(quiz.getContent());
-    quiz.next();
-    antwort = quiz.getContent();
-    quiz.next();
-    tipp=quiz.getContent();
+    tFrage.setText(quiz.getContent().getFrage());
     
     setVisible(true);
   } // end of public QuizGUINeu
@@ -180,7 +146,7 @@ public class QuizGUINeu extends JFrame {
 
   public void bNext_ActionPerformed(ActionEvent evt) {
     // TODO add your code here
-    bNext();
+    setRandom();
   } // end of bNext_ActionPerformed
 
   public void bCheck_ActionPerformed(ActionEvent evt) {
@@ -191,23 +157,16 @@ public class QuizGUINeu extends JFrame {
   public void bBar_ActionPerformed(ActionEvent evt) {
     
     
-  } // end of bBar_ActionPerformed
+  }
   
   public void bNext(){
     resetColor();
     quiz.next();
     if (quiz.getContent()!=null){
-      
-      tFrage.setText(quiz.getContent());
-      i++;
-      quiz.next();
-      antwort=quiz.getContent();
-      i++;
-      quiz.next();
-      tipp=quiz.getContent();
-      i++;
+      tFrage.setText(quiz.getContent().getFrage());
       tTipp.setText("");
-      tAntwort.setText(""); 
+      tAntwort.setText("");
+      quizIndex++; 
     }
     
     else{
@@ -217,39 +176,43 @@ public class QuizGUINeu extends JFrame {
     }   
   }
   
+  public void setRandom() {
+    Random rndm = new Random();
+    int randomIndex = rndm.nextInt(6);
+    quizIndex = randomIndex;
+    quiz.toFirst();
+    
+    for (int i = 0; i < quizIndex; i++) {
+      quiz.next();
+    }
+    
+    tFrage.setText(quiz.getContent().getFrage());
+    
+    tTipp.setText("");
+    tAntwort.setText("");
+  }
+  
   public void bPrevious(){
     resetColor();
     quiz.toFirst();
-    u=i;
-    a=i-1;
-    b=a-1;
     
-    while (b!=1) { 
+    if (quizIndex == 0) return;
+    
+    quizIndex--;
+    for (int i = 0; i < quizIndex; i++) {
       quiz.next();
-      b--;
-    } // end of while
-    tFrage.setText(quiz.getContent());
-    quiz.toFirst();
-    while (a!=1) { 
-      quiz.next();
-      a--;
-    } // end of while 
-    antwort=quiz.getContent();
-    quiz.toFirst();
-    while (i!=1) { 
-      quiz.next();
-      i--;
-    } // end of while 
-    tipp=quiz.getContent();
-    i=u-3;;
+    }
+    tFrage.setText(quiz.getContent().getFrage());
+    
     tTipp.setText("");
     tAntwort.setText("");
   }
   
   public void bCheck(){
-    if (tAntwort.getText().equalsIgnoreCase(antwort)) {
+    if (tAntwort.getText().equalsIgnoreCase(quiz.getContent().getLoesung())) {
       bBar.setBackground(new Color(0x8ac926));
       punkte=punkte+1;
+      setRandom();
     } else {
       bBar.setBackground(new Color(0xff595e));
       if (punkte!=0){
@@ -261,8 +224,8 @@ public class QuizGUINeu extends JFrame {
   
   public void bTipp(){
     if(punkte>=2){
-      tTipp.setText(tipp);
-      punkte=punkte-2;
+      tTipp.setText(quiz.getContent().getTipp());
+      punkte -= 2;
       nPunkte.setInt(punkte);
       tipps++;
     }
