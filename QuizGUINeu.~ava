@@ -390,7 +390,7 @@ public class QuizGUINeu extends JFrame {
     int randomIndex = rndm.nextInt(fragenSize);
     while (usedNums.contains(randomIndex)) {
       if (usedNums.size() == fragenSize) {
-        lEndPoints.setText(punkte + "/25 P");
+        lEndPoints.setText(punkte + "/26 P");
         showGUI(false);
         showEndMessage(true);
  
@@ -604,6 +604,7 @@ public class QuizGUINeu extends JFrame {
     usedNums.clear();
     showEndMessage(false);
     showGUI(true);
+    nPunkte.setInt(0);
   } // end of bRestart_ActionPerformed
 
   // end methods
